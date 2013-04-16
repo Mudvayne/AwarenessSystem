@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" minHeight="100.9609375" prefHeight="120.0" prefWidth="365.0" xmlns:fx="http://javafx.com/fxml" fx:controller="control.ViewController">
+  <children>
+    <Label layoutX="14.0" layoutY="6.0" text="Bitte loggen Sie sich in Ihren Google Account ein" />
+    <Button layoutX="14.0" layoutY="90.0" onAction="#handleButtonLoginAction" mnemonicParsing="false" prefWidth="102.0" text="login" />
+    <TextField layoutX="14.0" layoutY="51.0" prefWidth="165.0" text="" />
+    <PasswordField layoutX="186.0" layoutY="51.0" prefWidth="165.0" text="" />
+    <Label layoutX="15.0" layoutY="33.0" text="E-Mail" />
+    <Label layoutX="186.0" layoutY="33.0" text="Passwort" />
+  </children>
+</AnchorPane>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" disable="false" focusTraversable="false" opacity="1.0" prefHeight="330.0000999999975" prefWidth="440.0" visible="true" xmlns:fx="http://javafx.com/fxml" fx:controller="control.ViewController">
+  <children>
+    <Button layoutX="336.0" layoutY="301.0" onAction="#handleButtonSaveFiltersAction" mnemonicParsing="false" prefWidth="90.0" text="speichern" />
+    <Button layoutX="226.0" layoutY="301.0" onAction="#handleButtonCancelFiltersAction" mnemonicParsing="false" prefWidth="90.0" text="abbrechen" />
+    <Accordion expandedPane="$null" layoutX="196.0" layoutY="25.0" />
+    <TableView layoutX="14.0" layoutY="14.0" prefHeight="278.0" prefWidth="200.0" >
+      <columns>
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="210.0" resizable="false" sortable="false" text="Filter" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="203.0" text="Filter" />
+      </columns>
+    </TableView>
+    <TableView layoutX="226.0" layoutY="14.0" prefHeight="278.0" prefWidth="200.0">
+      <columns>
+        <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="210.0" resizable="false" sortable="false" text="Mitarbeiter" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="203.0" text="Filter" />
+      </columns>
+    </TableView>
+    <Button layoutX="124.0" layoutY="301.0" onAction="#handleButtonDeleteFilterAction" mnemonicParsing="false" prefWidth="90.0" text="löschen" />
+    <Button layoutX="14.0" layoutY="301.0" onAction="#handleButtonNewFilterAction" mnemonicParsing="false" prefWidth="90.0" text="neu" />
+  </children>
+</AnchorPane>
