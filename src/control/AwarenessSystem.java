@@ -11,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * test test
+ * test
  * @author Mudvayne
  */
 public class AwarenessSystem extends Application {
