@@ -16,8 +16,12 @@ import javafx.stage.Stage;
  */
 public class AwarenessSystem extends Application {
     
+    
+    protected static Stage stage;
+    
     @Override
     public void start(Stage stage) throws Exception {
+        this.stage = stage;
         Parent root = FXMLLoader.load(getClass().getResource("LoginView.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("CalendarView.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("FilterView.fxml"));
