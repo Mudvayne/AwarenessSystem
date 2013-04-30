@@ -35,6 +35,7 @@ public class CalendarViewController implements Initializable{
         }
         stage.sizeToScene();
         stage.show();
+        
         /*Stage parent = new Stage();
         
         Parent root = FXMLLoader.load(getClass().getResource("FilterView.fxml"));
