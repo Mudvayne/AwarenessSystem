@@ -24,7 +24,7 @@ public class CalendarViewController implements Initializable{
     @FXML
     private void handleButtonFiltersAction(ActionEvent event) throws Exception {
        
-      Stage stage = AwarenessSystem.stage;
+        Stage stage = AwarenessSystem.stage;
         Parent page = (Parent) FXMLLoader.load(AwarenessSystem.class.getResource("FilterView.fxml"), null, new JavaFXBuilderFactory());
         Scene scene = stage.getScene();
         if (scene == null) {
@@ -45,6 +45,18 @@ public class CalendarViewController implements Initializable{
         parent.setTitle("Team Awareness System");
         parent.show();
         */
+    }
+    
+    @FXML
+    private void handleSearchAction(ActionEvent event)
+    {
+        System.out.println("suche ...");
+    }
+    
+    @FXML
+    private void handleDropDownAction(ActionEvent event)
+    {
+        System.out.println("dropdown action");
     }
     
     @Override

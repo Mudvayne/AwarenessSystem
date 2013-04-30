@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" disable="false" focusTraversable="false" opacity="1.0" prefHeight="330.0000999999975" prefWidth="440.0" visible="true" xmlns:fx="http://javafx.com/fxml" fx:controller="control.ViewController">
+<AnchorPane id="AnchorPane" disable="false" focusTraversable="false" opacity="1.0" prefHeight="330.0000999999975" prefWidth="440.0" visible="true" xmlns:fx="http://javafx.com/fxml" fx:controller="control.FilterViewController">
   <children>
     <Button layoutX="336.0" layoutY="301.0" onAction="#handleButtonSaveFiltersAction" mnemonicParsing="false" prefWidth="90.0" text="speichern" />
     <Button layoutX="226.0" layoutY="301.0" onAction="#handleButtonCancelFiltersAction" mnemonicParsing="false" prefWidth="90.0" text="abbrechen" />
