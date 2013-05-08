@@ -23,18 +23,21 @@ public class CalendarViewController implements Initializable{
     
     @FXML
     private void handleButtonFiltersAction(ActionEvent event) throws Exception {
-       
-        Stage stage = AwarenessSystem.stage;
+        
+        Stage filterStage = new Stage();
+        filterStage.setTitle("Filter verwalten");
         Parent page = (Parent) FXMLLoader.load(AwarenessSystem.class.getResource("FilterView.fxml"), null, new JavaFXBuilderFactory());
-        Scene scene = stage.getScene();
+        Scene scene = filterStage.getScene();
+        
         if (scene == null) {
-            scene = new Scene(page, 700, 450);
-            stage.setScene(scene);
+            scene = new Scene(page, 440, 330);
+            filterStage.setScene(scene);
         } else {
-            stage.getScene().setRoot(page);
+            filterStage.getScene().setRoot(page);
         }
-        stage.sizeToScene();
-        stage.show();
+        
+        filterStage.sizeToScene();
+        filterStage.show();
         
         /*Stage parent = new Stage();
         

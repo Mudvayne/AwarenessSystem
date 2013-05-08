@@ -22,12 +22,13 @@ public class AwarenessSystem extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         this.stage = stage;
+        this.stage.setTitle("Team Awareness System");
+        
         //Parent root = FXMLLoader.load(getClass().getResource("LoginView.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("CalendarView.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("FilterView.fxml"));
         
         stage.setScene(new Scene(root));
-        stage.setTitle("Team Awareness System");
         stage.show();
     }
 
