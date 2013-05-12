@@ -3,7 +3,9 @@
  * and open the template in the editor.
  */
 package control;
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -29,7 +31,8 @@ public class AwarenessSystem extends Application {
 
         try {
                 // Load the root layout from the fxml file
-                FXMLLoader loader = new FXMLLoader(AwarenessSystem.class.getResource("RootLayout.fxml"));
+                FXMLLoader loader = new FXMLLoader(AwarenessSystem.class.getResource("/view/RootLayout.fxml"));
+                
                 rootLayout = (BorderPane) loader.load();
                 Scene scene = new Scene(rootLayout);
                 primaryStage.setScene(scene);
@@ -46,7 +49,7 @@ public class AwarenessSystem extends Application {
     public void showCalendarView() {
         try {
             // Load the fxml file and set into the center of the main layout
-            FXMLLoader loader = new FXMLLoader(AwarenessSystem.class.getResource("CalendarView.fxml"));
+            FXMLLoader loader = new FXMLLoader(AwarenessSystem.class.getResource("/view/CalendarView.fxml"));
             AnchorPane overviewPage = (AnchorPane) loader.load();
             rootLayout.setCenter(overviewPage);
 
@@ -63,7 +66,7 @@ public class AwarenessSystem extends Application {
     public boolean showFilterView() throws Exception {
         try {
             // Load the fxml file and create a new stage for the popup
-            FXMLLoader loader = new FXMLLoader(AwarenessSystem.class.getResource("FilterView.fxml"));
+            FXMLLoader loader = new FXMLLoader(AwarenessSystem.class.getResource("/view/FilterView.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Edit Filters");
