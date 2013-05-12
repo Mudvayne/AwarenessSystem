@@ -60,7 +60,7 @@ public class AwarenessSystem extends Application {
         }
     }
     
-    public void showFilterView() throws Exception {
+    public boolean showFilterView() throws Exception {
         try {
             // Load the fxml file and create a new stage for the popup
             FXMLLoader loader = new FXMLLoader(AwarenessSystem.class.getResource("FilterView.fxml"));
@@ -76,12 +76,15 @@ public class AwarenessSystem extends Application {
             FilterViewController controller = loader.getController();
             controller.setMainApp(this);
 
-            dialogStage.show();
+            dialogStage.showAndWait();
+            
+            return controller.isOkClicked();
 
         } 
         catch (IOException e) {
             // Exception gets thrown if the fxml file could not be loaded
             e.printStackTrace();
+            return false;
         }
     }
     
