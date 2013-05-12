@@ -7,22 +7,29 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="925.0" xmlns:fx="http://javafx.com/fxml" fx:controller="control.CalendarViewController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="830.0" xmlns:fx="http://javafx.com/fxml" fx:controller="control.CalendarViewController">
   <children>
-    <TableView disable="false" editable="false" layoutX="13.0" layoutY="46.0" prefHeight="400.0" prefWidth="900.0" tableMenuButtonVisible="false">
+    <TableView disable="false" editable="false" layoutX="15.0" layoutY="46.0" prefHeight="400.0" prefWidth="801.0" tableMenuButtonVisible="false">
       <columns>
-        <TableColumn editable="false" maxWidth="199.0" minWidth="10.0" prefWidth="199.0" resizable="false" sortable="true" text="Mitarbeiter" />
-        <TableColumn editable="false" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" resizable="false" sortable="false" text="Montag" />
-        <TableColumn editable="false" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" resizable="false" sortable="false" text="Dienstag" />
-        <TableColumn editable="false" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" resizable="false" sortable="false" text="Mittwoch" />
-        <TableColumn editable="false" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" resizable="false" sortable="false" text="Donnerstag" />
-        <TableColumn editable="false" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" resizable="false" sortable="false" text="Freitag" />
-        <TableColumn editable="false" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" resizable="false" sortable="false" text="Samstag" />
-        <TableColumn editable="false" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" resizable="false" sortable="false" text="Sonntag" />
+        <TableColumn editable="false" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" sortable="true" text="Mitarbeiter" />
+        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="6" />
+        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="7" />
+        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="8" />
+        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="9" />
+        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="10" />
+        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="11" />
+        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="12" />
+        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="13" />
+        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="14" />
+        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="15" />
+        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="16" />
+        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="17" />
+        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="18" />
+        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="19" />
       </columns>
     </TableView>
-    <TextField layoutX="663.0" layoutY="13.0" prefWidth="250.0" />
-    <ComboBox layoutX="13.0" layoutY="14.0" prefHeight="21.0" prefWidth="250.0">
+    <TextField layoutX="580.0" layoutY="13.0" onAction="#handleSearchAction" prefWidth="237.0" />
+    <ComboBox layoutX="15.0" layoutY="14.0" onAction="#handleDropDownAction" prefHeight="21.0" prefWidth="250.0">
       <items>
         <FXCollections fx:factory="observableArrayList">
           <String fx:value="Filter 1" />
@@ -31,6 +38,6 @@
         </FXCollections>
       </items>
     </ComboBox>
-    <Button id="button" fx:id="buttonFilters" cache="false" cancelButton="false" defaultButton="false" layoutX="272.0" layoutY="14.0" onAction="#handleButtonFiltersAction" rotate="0.0" text="Filter verwalten" textOverrun="ELLIPSIS" underline="false" />
+    <Button id="button" fx:id="buttonFilters" cache="false" cancelButton="false" defaultButton="false" layoutX="274.0" layoutY="14.0" onAction="#handleButtonFiltersAction" rotate="0.0" text="Filter verwalten" textOverrun="ELLIPSIS" underline="false" />
   </children>
 </AnchorPane>

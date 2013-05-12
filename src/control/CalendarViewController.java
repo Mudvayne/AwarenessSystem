@@ -21,34 +21,16 @@ import javafx.stage.Stage;
  */
 public class CalendarViewController implements Initializable{
     
+    private AwarenessSystem main;
+    
+    public void setMainApp(AwarenessSystem main)
+    {
+        this.main = main;
+    }
+    
     @FXML
     private void handleButtonFiltersAction(ActionEvent event) throws Exception {
-        
-        Stage filterStage = new Stage();
-        filterStage.setTitle("Filter verwalten");
-        Parent page = (Parent) FXMLLoader.load(AwarenessSystem.class.getResource("FilterView.fxml"), null, new JavaFXBuilderFactory());
-        Scene scene = filterStage.getScene();
-        
-        if (scene == null) {
-            scene = new Scene(page, 440, 330);
-            filterStage.setScene(scene);
-        } else {
-            filterStage.getScene().setRoot(page);
-        }
-        
-        filterStage.sizeToScene();
-        filterStage.show();
-        
-        /*Stage parent = new Stage();
-        
-        Parent root = FXMLLoader.load(getClass().getResource("FilterView.fxml"));
-        
-        Scene scene = new Scene(root);
-        
-        parent.setScene(scene);
-        parent.setTitle("Team Awareness System");
-        parent.show();
-        */
+        main.showFilterView();
     }
     
     @FXML
