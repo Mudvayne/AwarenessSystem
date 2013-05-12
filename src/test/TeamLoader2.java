@@ -22,11 +22,11 @@ import java.util.logging.Logger;
  */
 public class TeamLoader2 {
 
-    BufferedReader bufferedReader;
-    BufferedWriter bufferedWriter;
-    Map<String, String[]> Teams = new HashMap<>();
+   private BufferedReader bufferedReader;
+   private BufferedWriter bufferedWriter;
+   private Map<String, String[]> Teams = new HashMap<>();
 
-    public void loadTeams() {
+    private void loadTeams() {
         try {
             bufferedReader = new BufferedReader(new FileReader("Teams.txt"));
             String line = bufferedReader.readLine();
@@ -35,23 +35,22 @@ public class TeamLoader2 {
                 Teams.put(tmp[0], tmp[1].split(","));
                 line = bufferedReader.readLine();
             }
+            bufferedReader.close();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(TeamLoader.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TeamLoader2.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(TeamLoader.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TeamLoader2.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
-    public boolean teamExist(String teamName) {
-
+    private boolean teamExist(String teamName) {
         loadTeams();
         if (Teams.containsKey(teamName)) {
             return true;
         } else {
             return false;
         }
-
     }
 
     public Map<String, String[]> getAllTeams() {
@@ -89,7 +88,7 @@ public class TeamLoader2 {
                 bufferedWriter.flush();
                 bufferedWriter.close();
             } catch (IOException ex) {
-                Logger.getLogger(TeamLoader.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TeamLoader2.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             System.out.println("Es gibt kein Team mit diesem Namen");
@@ -119,13 +118,14 @@ public class TeamLoader2 {
                 bufferedWriter.flush();
                 bufferedWriter.close();
             } catch (IOException ex) {
-                Logger.getLogger(TeamLoader.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TeamLoader2.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             System.out.println("Diese Team gibt es Bereits!");
         }
 
     }
+   
     public static void main(String...args){
         TeamLoader2 tm = new TeamLoader2();
         Map<String,String[]> tmp =tm.getAllTeams();
@@ -139,4 +139,5 @@ public class TeamLoader2 {
         }
         tm.updateTeam("Team1", new String[]{"Hallo","Test","Kekse"});
     }
+    
 }
