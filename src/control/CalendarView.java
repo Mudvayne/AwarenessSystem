@@ -21,7 +21,7 @@ public class CalendarView {
     
     public CalendarView() throws IOException
     {
-        parent = FXMLLoader.load(getClass().getResource("CalendarView.fxml"));
+        parent = FXMLLoader.load(getClass().getResource("/view/CalendarView.fxml"));
         this.scene = new Scene(parent);
     }
     

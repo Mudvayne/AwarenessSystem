@@ -14,21 +14,13 @@
     <Button mnemonicParsing="false" onAction="#handleButtonNewFilterAction" prefWidth="90.0" text="neu" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
     <SplitPane disable="false" dividerPositions="0.33253588516746413" focusTraversable="true" prefHeight="278.0" prefWidth="420.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
       <items>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-          <children>
-            <TableView prefHeight="276.0" prefWidth="136.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-              <columns>
-                <TableColumn maxWidth="136.0" minWidth="136.0" prefWidth="136.0" text="Filter" />
-              </columns>
-            </TableView>
-          </children>
-        </AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
           <children>
             <TableView prefHeight="276.0" prefWidth="276.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <columns>
-                <TableColumn editable="false" minWidth="138.0" prefWidth="75.0" resizable="false" text="Mitarbeiter" />
-                <TableColumn minWidth="138.0" prefWidth="75.0" resizable="false" sortable="false" text="Auswahl" />
+                <TableColumn prefWidth="75.0" text="Column X" />
+                <TableColumn prefWidth="75.0" text="Column X" />
               </columns>
             </TableView>
           </children>

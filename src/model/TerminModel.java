@@ -1,20 +1,23 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package model;
 
 import java.util.Date;
 
 /**
- * Model fuer ein Event,
- * repraesentiert genau einen Eintrag im Kalender 
- * mit Name, Anfangszeit, Endzeit und Ort
+ * Model fuer einen Termin, mit Name, Start- und End-Zeit sowie Ort
  * @author michi
  */
-public class Event implements Comparable<Event>{
+public class TerminModel implements Comparable<TerminModel>{
+
     private String name;
     private Date start;
     private Date ende;
     private String ort;
 
-    public Event(String name, Date start, Date ende, String ort) {
+    public TerminModel(String name, Date start, Date ende, String ort) {
         this.name = name;
         this.start = start;
         this.ende = ende;
@@ -25,42 +28,27 @@ public class Event implements Comparable<Event>{
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Date getStart() {
         return start;
-    }
-
-    public void setStart(Date start) {
-        this.start = start;
     }
 
     public Date getEnde() {
         return ende;
     }
 
-    public void setEnde(Date ende) {
-        this.ende = ende;
-    }
-
     public String getOrt() {
         return ort;
-    }
-
-    public void setOrt(String ort) {
-        this.ort = ort;
     }
     
     @Override
     public String toString() {
-        return (name + " : " + start + " - " + ende + " (" + ort + ")");
+        return (name + ": " + start + " - " + ende + " (" + ort + ")");
     }
-
+    
     //um Events nach der Startzeit zu sortieren
     @Override
-    public int compareTo(Event o) {
+    public int compareTo(TerminModel o) {
        return this.start.compareTo(o.start); 
     }
+    
 }
