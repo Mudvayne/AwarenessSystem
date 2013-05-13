@@ -1,6 +1,5 @@
 package test;
 
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -94,7 +93,6 @@ public class TeamLoader2 {
         } else {
             System.out.println("Es gibt kein Team mit diesem Namen");
         }
-
     }
 
     public void saveNewTeam(String teamName, String[] team) {

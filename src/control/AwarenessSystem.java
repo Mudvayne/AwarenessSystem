@@ -72,7 +72,6 @@ public class AwarenessSystem extends Application {
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
-            // Set the persons into the controller
             FilterViewController controller = loader.getController();
             controller.setMainApp(this);
 
