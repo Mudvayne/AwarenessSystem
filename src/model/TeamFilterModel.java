@@ -4,12 +4,14 @@
  */
 package model;
 
+import control.FilterViewController;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
@@ -23,13 +25,18 @@ import java.util.logging.Logger;
  */
 public class TeamFilterModel extends Observable {
 
-    private BufferedReader bufferedReader;
-    private BufferedWriter bufferedWriter;
-    private Map<String, String[]> Teams = new HashMap<>();
+    private  BufferedReader bufferedReader;
+    private  BufferedWriter bufferedWriter;
+    private  Map<String, String[]> teams = new HashMap<>();
+   
 
+    public TeamFilterModel(){
+        this.addObserver(new FilterViewController());
+    }
+    
     public Map<String, String[]> getTeams() {
         loadTeam();
-        return Teams;
+        return teams;
     }
 
     private void loadTeam() {
@@ -38,7 +45,7 @@ public class TeamFilterModel extends Observable {
             String line = bufferedReader.readLine();
             while (line != null) {
                 String[] tmp = line.split(":");
-                Teams.put(tmp[0], tmp[1].split(","));
+                teams.put(tmp[0], tmp[1].split(","));
                 line = bufferedReader.readLine();
             }
             bufferedReader.close();
@@ -49,11 +56,11 @@ public class TeamFilterModel extends Observable {
         }
     }
 
-    public void PersistsTeams(Map<String, String[]> teamMap) {
-        Teams = teamMap;
+    public  void PersistsTeams(Map<String, String[]> teamMap) {
+        teams = teamMap;
         try {
             bufferedWriter = new BufferedWriter(new FileWriter("Teams.txt"));
-            for (Map.Entry e : Teams.entrySet()) {
+            for (Map.Entry e : teams.entrySet()) {
                 String teamToWrite = e.getKey() + ":";
                 String[] tmp = (String[]) e.getValue();
                 for (int i = 0; i < tmp.length; i++) {
@@ -68,14 +75,21 @@ public class TeamFilterModel extends Observable {
             }
             bufferedWriter.flush();
             bufferedWriter.close();
-            setChanged();
+            if(countObservers()>0){
+                setChanged();
+                notifyObservers(teams);
+            }
+            
         } catch (IOException ex) {
             Logger.getLogger(TeamFilterModel.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
-
-    public void addObserver(final Observer obs) {
-        super.addObserver(obs);
+    public static void main(String...args){
+        Map<String,String[]> tmp = new HashMap<String,String[]>();
+        tmp.put("Hallo", new String[]{"hallo1@gmail.de","Test1@gmail.com"});
+        TeamFilterModel tm = new TeamFilterModel();
+        tm.PersistsTeams(tmp);
     }
+    
 }
