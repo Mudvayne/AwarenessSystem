@@ -29,16 +29,16 @@ import java.util.logging.Logger;
  * Baut beim Start die Verbindung zur Google Kalender API auf und befuellt das Model
  * @author Michael Unverzart
  */
-public class KalenderModel {
+public class CalendarModel {
 
     //fuer den Verbindungsaufbau zur Google Calendar API
     private HttpTransport HTTP_TRANSPORT;
     private JsonFactory JSON_FACTORY;
     private com.google.api.services.calendar.Calendar client;
-    private Map<MitarbeiterModel, Set<TerminModel>> mitarbeiterTermineList;
+    private Map<EmployeeModel, Set<TerminModel>> mitarbeiterTermineList;
     
     
-    public KalenderModel() {
+    public CalendarModel() {
         try {
             HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
             JSON_FACTORY = new JacksonFactory();
@@ -56,7 +56,7 @@ public class KalenderModel {
             initData();
             
         } catch (GeneralSecurityException | IOException ex) {
-            Logger.getLogger(KalenderModel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CalendarModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -89,7 +89,7 @@ public class KalenderModel {
                             termine.add(new TerminModel(event.getSummary(),start,end,event.getLocation()));
                         }    
                     }
-                mitarbeiterTermineList.put(new MitarbeiterModel(entry.getSummary(),entry.getId()), termine);
+                mitarbeiterTermineList.put(new EmployeeModel(entry.getSummary(),entry.getId()), termine);
             }
     }
 
@@ -98,19 +98,19 @@ public class KalenderModel {
         try {
             initData();
         } catch (IOException ex) {
-            Logger.getLogger(KalenderModel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CalendarModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public Map<MitarbeiterModel, Set<TerminModel>> getMitarbeiterTermineList() {
+    public Map<EmployeeModel, Set<TerminModel>> getMitarbeiterTermineList() {
         return mitarbeiterTermineList;
     }
 
-    public Set<MitarbeiterModel> getMitarbeiterList() {
+    public Set<EmployeeModel> getMitarbeiterList() {
         return mitarbeiterTermineList.keySet();
     }
     
-    public Set<TerminModel> getTermine(MitarbeiterModel mitarbeiter) {
+    public Set<TerminModel> getTermine(EmployeeModel mitarbeiter) {
         return mitarbeiterTermineList.get(mitarbeiter);
     }
     

@@ -41,7 +41,6 @@ public class TeamLoader {
                     if (line.contains(teamName)) {
                         String[] tmp = line.split(":");
                         names = tmp[1].split(",");
-
                     }
                     line = bufferedReader.readLine();
                 }
@@ -50,7 +49,6 @@ public class TeamLoader {
             } catch (IOException ex) {
                 Logger.getLogger(TeamLoader.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }else{
             throw new Exception("Es gibt kein Team mit diesem Namen");
         }
@@ -105,6 +103,5 @@ public class TeamLoader {
         tm.saveTeam("Team2", new String[]{"hallo1@gmail.de", "Test1@gmail.com"});
         String[] tmp = tm.getTeam("Team2");
         System.out.println(tmp.toString());
-               
     }
 }

@@ -28,8 +28,6 @@ public class FilterViewController implements Initializable, Observer {
     private Map<String, String[]> teams = new HashMap<>();
     private final static TeamFilterController tfc = new TeamFilterController();
     
-  
-
     public void setMainApp(AwarenessSystem main) {
         this.main = main;
     }

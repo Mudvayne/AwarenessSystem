@@ -11,21 +11,21 @@
   <children>
     <TableView fx:id="calendarViewTable" disable="false" editable="false" prefHeight="400.0" prefWidth="801.0" tableMenuButtonVisible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="41.0">
       <columns>
-        <TableColumn editable="false" maxWidth="121.0" minWidth="100.0" prefWidth="109.0" resizable="false" sortable="true" text="Mitarbeiter" />
-        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="6" />
-        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="7" />
-        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="8" />
-        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="9" />
-        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="10" />
-        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="11" />
-        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="12" />
-        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="13" />
-        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="14" />
-        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="15" />
-        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="16" />
-        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="17" />
-        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="18" />
-        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="19" />
+        <TableColumn editable="false" maxWidth="121.0" minWidth="100.0" prefWidth="109.0" resizable="false" sortable="true" text="Mitarbeiter" fx:id="tableColName" />
+        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="6" fx:id="tableCol6" />
+        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="7" fx:id="tableCol7" />
+        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="8" fx:id="tableCol8" />
+        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="9" fx:id="tableCol9" />
+        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="10" fx:id="tableCol10" />
+        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="11" fx:id="tableCol11" />
+        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="12" fx:id="tableCol12" />
+        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="13" fx:id="tableCol13" />
+        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="14" fx:id="tableCol14" />
+        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="15" fx:id="tableCol15" />
+        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="16" fx:id="tableCol16" />
+        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="17" fx:id="tableCol17" />
+        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="18" fx:id="tableCol18" />
+        <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="19" fx:id="tableCol19" />
       </columns>
     </TableView>
     <TextField onAction="#handleSearchAction" prefWidth="237.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />

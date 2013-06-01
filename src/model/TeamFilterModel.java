@@ -28,7 +28,6 @@ public class TeamFilterModel extends Observable {
     private  BufferedWriter bufferedWriter;
     private  Map<String, String[]> teams = new HashMap<>();
    
-
     public TeamFilterModel(){
         this.addObserver(new FilterViewController());
     }
@@ -80,7 +79,6 @@ public class TeamFilterModel extends Observable {
         } catch (IOException ex) {
             Logger.getLogger(TeamFilterModel.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
     public static void main(String...args){
         Map<String,String[]> tmp = new HashMap<String,String[]>();
@@ -88,5 +86,4 @@ public class TeamFilterModel extends Observable {
         TeamFilterModel tm = new TeamFilterModel();
         tm.PersistsTeams(tmp);
     }
-    
 }

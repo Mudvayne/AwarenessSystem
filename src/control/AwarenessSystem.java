@@ -8,6 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.CalendarModel;
 
 /**
  * Main Klasse
@@ -17,9 +18,11 @@ public class AwarenessSystem extends Application {
     
     private Stage primaryStage;
     private BorderPane rootLayout;
+    private CalendarModel calendarModel;
     
     @Override
     public void start(Stage stage) throws Exception {
+        calendarModel = new CalendarModel();
         this.primaryStage = stage;
         this.primaryStage.setTitle("Team Awareness System");
         //this.primaryStage.getIcons().add(new Image("file:resources/images/address_book_32.png"));
@@ -52,6 +55,8 @@ public class AwarenessSystem extends Application {
             CalendarViewController controller = loader.getController();
             
             controller.setMainApp(this);
+            controller.setCalendarModel(calendarModel);
+            controller.updateCalendarTable(); // noch die falsche Stelle dafür! ->observer
         } 
         catch (IOException e) {
                 // Exception gets thrown if the fxml file could not be loaded

@@ -6,16 +6,16 @@ import java.util.Objects;
  * Model fuer einen Mitarbeiter, mit Name und eindeutiger E-Mail
  * @author Michael U.
  */
-public class MitarbeiterModel {
+public class EmployeeModel {
     private String name;
     private String mail;
 
-    public MitarbeiterModel(String name, String mail) {
+    public EmployeeModel(String name, String mail) {
         this.name = name;
         this.mail = mail;
     }
 
-   public MitarbeiterModel(String mail) {
+   public EmployeeModel(String mail) {
         this.mail = mail;
     }
     
@@ -47,7 +47,7 @@ public class MitarbeiterModel {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final MitarbeiterModel other = (MitarbeiterModel) obj;
+        final EmployeeModel other = (EmployeeModel) obj;
         if (!Objects.equals(this.mail, other.mail)) {
             return false;
         }
