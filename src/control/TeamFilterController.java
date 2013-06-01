@@ -13,12 +13,9 @@ import model.TeamFilterModel;
 public class TeamFilterController {
 
     private Map<String, String[]> Teams = new HashMap<>();
-    private TeamFilterModel model;
+    private TeamFilterModel model = new TeamFilterModel();
 
-    public TeamFilterController(final TeamFilterModel model) {
-        this.model = model;
-    }
-
+  
     public String[] getTeam(String teamName) {
         if (teamExist(teamName)) {
             return Teams.get(teamName);
@@ -38,7 +35,7 @@ public class TeamFilterController {
         }
     }
     
-    public void safeNewTeam(String teamName, String[] team) throws TeamAlreadyExistsException{
+    public  void safeNewTeam(String teamName, String[] team) throws TeamAlreadyExistsException{
          if (!teamExist(teamName)) {
             Teams.put(teamName, team);
             model.PersistsTeams(Teams);
