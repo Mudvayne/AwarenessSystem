@@ -6,7 +6,6 @@ package model;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,7 +18,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Florian
+ * @author Florian N.
  */
 public class TeamFilterModel extends Observable {
 
@@ -42,9 +41,7 @@ public class TeamFilterModel extends Observable {
                 line = bufferedReader.readLine();
             }
             bufferedReader.close();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(TeamFilterModel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+        } catch (IOException ex ) {
             Logger.getLogger(TeamFilterModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

@@ -26,8 +26,8 @@ import java.util.logging.Logger;
 
 /**
  * Model fuer alle Kalender,
- * baut beim Start die Verbindung zur Google Kalender API auf und befuellt das Model
- * @author michi
+ * Baut beim Start die Verbindung zur Google Kalender API auf und befuellt das Model
+ * @author Michael Unverzart
  */
 public class KalenderModel {
 

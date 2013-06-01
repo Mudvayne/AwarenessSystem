@@ -1,11 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package control;
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,8 +10,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * test
- * @author Mudvayne
+ * Main Klasse
+ * @author Manuel Wurth
  */
 public class AwarenessSystem extends Application {
     
@@ -52,9 +47,10 @@ public class AwarenessSystem extends Application {
             FXMLLoader loader = new FXMLLoader(AwarenessSystem.class.getResource("/view/CalendarView.fxml"));
             AnchorPane overviewPage = (AnchorPane) loader.load();
             rootLayout.setCenter(overviewPage);
-
+            //rootLayout.setMaxSize(d, d1);
             // Give the controller access to the main app
             CalendarViewController controller = loader.getController();
+            
             controller.setMainApp(this);
         } 
         catch (IOException e) {

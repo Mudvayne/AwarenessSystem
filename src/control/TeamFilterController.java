@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package control;
 
 import java.util.HashMap;
@@ -12,7 +8,7 @@ import model.TeamFilterModel;
 
 /**
  *
- * @author Florian
+ * @author Florian Neuner
  */
 public class TeamFilterController {
 
@@ -29,6 +25,8 @@ public class TeamFilterController {
         } else {
             return null;
         }
+        
+        // return teamExists(teamName) == true ? return Teams.get(teamName) : return null;
     }
 
     public void updateTeams(String teamName, String[] team) throws TeamNotFoundException{
@@ -36,7 +34,7 @@ public class TeamFilterController {
             Teams.put(teamName, team);
             model.PersistsTeams(Teams);
         }else{
-            throw new TeamNotFoundException("This Team not Exists in your Team Filters.");
+            throw new TeamNotFoundException("This team not exists in your team filters.");
         }
     }
     
@@ -60,10 +58,6 @@ public class TeamFilterController {
 
     private boolean teamExist(String teamName) {
         loadTeams();
-        if (Teams.containsKey(teamName)) {
-            return true;
-        } else {
-            return false;
-        }
+        return Teams.containsKey(teamName);
     }
 }

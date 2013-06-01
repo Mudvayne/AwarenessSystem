@@ -4,7 +4,7 @@ import java.util.Objects;
 
 /**
  * Model fuer einen Mitarbeiter, mit Name und eindeutiger E-Mail
- * @author michi
+ * @author Michael U.
  */
 public class MitarbeiterModel {
     private String name;
@@ -53,5 +53,4 @@ public class MitarbeiterModel {
         }
         return true;
     }
-        
 }

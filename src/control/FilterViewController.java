@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package control;
 
 import java.io.IOException;
@@ -13,8 +9,8 @@ import javafx.fxml.Initializable;
 
 
 /**
- *
- * @author Mudvayne
+ * Controller für FilterView
+ * @author Manuel Wurth
  */
 public class FilterViewController implements Initializable {
     
@@ -47,11 +43,11 @@ public class FilterViewController implements Initializable {
     private void handleButtonSaveFiltersAction(ActionEvent event) throws IOException
     {
         okClicked = true;
+        System.out.println("filter speichern");
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-       
     }
 }
