@@ -86,4 +86,5 @@ public class TeamFilterModel extends Observable {
         TeamFilterModel tm = new TeamFilterModel();
         tm.PersistsTeams(tmp);
     }
+    
 }
