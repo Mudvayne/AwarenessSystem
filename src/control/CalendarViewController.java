@@ -1,9 +1,8 @@
 package control;
 
 import java.net.URL;
+import java.util.Observer;
 import java.util.ResourceBundle;
-import javafx.beans.Observable;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,14 +12,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.CalendarModel;
-import model.EmployeeModel;
 import model.TableEntry;
 
 /**
  * Controller Klasse für die CalendarView
  * @author Manuel Wurth
  */
-public class CalendarViewController implements Initializable{
+public class CalendarViewController implements Initializable, Observer{
     
     private AwarenessSystem main;
     private CalendarModel calendarModel;
@@ -66,6 +64,7 @@ public class CalendarViewController implements Initializable{
     public void setCalendarModel(CalendarModel calendarModel)
     {
         this.calendarModel = calendarModel;
+        calendarModel.addObserver(this);
     }
     
     @FXML
@@ -107,14 +106,15 @@ public class CalendarViewController implements Initializable{
     
     public void updateCalendarTable()
     {
-        boolean[] times = { true, false, true, false, false, true, false, true, false, false, true, false, true, false }; //dummys
-        final ObservableList<TableEntry> data =
-        FXCollections.observableArrayList(
+        //boolean[] times = { true, false, true, false, false, true, false, true, false, false, true, false, true, false }; //dummys
+        final ObservableList<TableEntry> data = FXCollections.observableList(calendarModel.getTableEntrys());
+        /*
+                FXCollections.observableArrayList(
             new TableEntry("Hans", times),
             new TableEntry("Klaus", times),
             new TableEntry("Hugo", times),
             new TableEntry("Hubert", times)
-        );
+        );*/
         calendarViewTable.setItems(data);
         /*
         EmployeeModel[] employees = (EmployeeModel[]) calendarModel.getMitarbeiterList().toArray();
@@ -126,5 +126,10 @@ public class CalendarViewController implements Initializable{
         
         calendarViewTable.setItems(data);
         */
+    }
+
+    @Override
+    public void update(java.util.Observable o, Object arg) {
+        updateCalendarTable();
     }
 }

@@ -19,10 +19,13 @@ public class AwarenessSystem extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
     private CalendarModel calendarModel;
+    private GoogleApiController googleController;
     
     @Override
     public void start(Stage stage) throws Exception {
         calendarModel = new CalendarModel();
+        googleController = new GoogleApiController(calendarModel);
+        googleController.start();
         this.primaryStage = stage;
         this.primaryStage.setTitle("Team Awareness System");
         //this.primaryStage.getIcons().add(new Image("file:resources/images/address_book_32.png"));
@@ -56,7 +59,7 @@ public class AwarenessSystem extends Application {
             
             controller.setMainApp(this);
             controller.setCalendarModel(calendarModel);
-            controller.updateCalendarTable(); // noch die falsche Stelle dafür! ->observer
+            //controller.updateCalendarTable(); // noch die falsche Stelle dafür! ->observer
         } 
         catch (IOException e) {
                 // Exception gets thrown if the fxml file could not be loaded
@@ -93,5 +96,14 @@ public class AwarenessSystem extends Application {
     
     public static void main(String[] args) {
         launch(args);
+    }
+    
+    @Override
+    public void stop() throws Exception {
+        synchronized(calendarModel) {
+            calendarModel.setProgRunning(false);
+        }
+        googleController.interrupt();
+        super.stop(); //To change body of generated methods, choose Tools | Templates.
     }
 }

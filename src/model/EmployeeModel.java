@@ -6,7 +6,7 @@ import java.util.Objects;
  * Model fuer einen Mitarbeiter, mit Name und eindeutiger E-Mail
  * @author Michael U.
  */
-public class EmployeeModel {
+public class EmployeeModel implements Comparable<EmployeeModel>{
     private String name;
     private String mail;
 
@@ -52,5 +52,10 @@ public class EmployeeModel {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int compareTo(EmployeeModel o) {
+        return this.name.compareTo(o.name);
     }
 }
