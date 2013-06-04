@@ -8,9 +8,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
+import javafx.util.Callback;
 import model.CalendarModel;
 import model.TableEntry;
 
@@ -102,7 +105,46 @@ public class CalendarViewController implements Initializable, Observer{
         tableCol18.setCellValueFactory(new PropertyValueFactory<TableEntry,String>("col18"));
         tableCol19.setCellValueFactory(new PropertyValueFactory<TableEntry,String>("col19"));
         tableColName.setCellValueFactory(new PropertyValueFactory<TableEntry,String>("colName"));
+                
+        tableCol6.setCellFactory(setColour());
+        tableCol7.setCellFactory(setColour());
+        tableCol8.setCellFactory(setColour());
+        tableCol9.setCellFactory(setColour());
+        tableCol10.setCellFactory(setColour());
+        tableCol11.setCellFactory(setColour());
+        tableCol12.setCellFactory(setColour());
+        tableCol13.setCellFactory(setColour());
+        tableCol14.setCellFactory(setColour());
+        tableCol15.setCellFactory(setColour());
+        tableCol16.setCellFactory(setColour());
+        tableCol17.setCellFactory(setColour());
+        tableCol18.setCellFactory(setColour());
+        tableCol19.setCellFactory(setColour());
     }
+    
+    private Callback<TableColumn<TableEntry, String>, TableCell<TableEntry, String>> setColour() {
+        return new Callback<TableColumn<TableEntry, String>, TableCell<TableEntry, String>>() {
+            @Override
+            public TableCell<TableEntry, String> call(TableColumn<TableEntry, String> param) {
+                return new TableCell<TableEntry, String>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (!empty) {
+                          // Use a SimpleDateFormat or similar in the format method
+                          if (item.equals("n.a.")) {
+                            setStyle("-fx-background-color:#FF0000;");
+                          } 
+                        } else {
+                          setText(null);
+                        }
+                    }
+                };
+
+            }
+        };
+    }
+    
     
     public void updateCalendarTable()
     {
