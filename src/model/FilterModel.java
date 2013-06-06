@@ -78,8 +78,4 @@ public class FilterModel  {
             Logger.getLogger(FilterModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-   
-    
-    
 }

@@ -28,8 +28,8 @@
         <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="19" fx:id="tableCol19" />
       </columns>
     </TableView>
-    <TextField onAction="#handleSearchAction" prefWidth="237.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
-    <ComboBox onAction="#handleDropDownAction" prefHeight="21.0" prefWidth="250.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+    <TextField fx:id="searchField" onAction="#handleSearchAction" prefWidth="237.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+    <ComboBox onAction="#handleDropDownAction" prefHeight="21.0" prefWidth="250.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" >
       <items>
         <FXCollections fx:factory="observableArrayList">
           <String fx:value="Filter 1" />
