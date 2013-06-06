@@ -53,6 +53,19 @@ public class CalendarModel extends Observable {
         return table;
     }
     
+    public List<FilterEntry> getFilterEntrys(){
+        List<FilterEntry> table = new ArrayList<>();
+        synchronized(this){
+            for(Map.Entry<EmployeeModel, Set<TerminModel>> entry : mitarbeiterTermineList.entrySet()){
+                EmployeeModel employeeModel = entry.getKey();
+                table.add(new FilterEntry(employeeModel.getName()));
+            }
+        }
+        return table;
+    }
+    
+    
+    
     private boolean[] convertTermin2Table(Set<TerminModel> termine) {
         boolean[] table = { true, true, true, true, true, true, true, true, true, true, true, true, true, true};
         Calendar cal = Calendar.getInstance();
