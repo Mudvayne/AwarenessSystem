@@ -1,90 +1,95 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
-import control.FilterViewController;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import exceptions.TeamAlreadyExistsException;
+import exceptions.TeamNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
-import java.util.Observer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import model.FilterModel;
 
 /**
  *
- * @author Florian N.
+ * @author Florian Neuner
  */
-public class TeamFilterModel extends Observable {
+public class TeamFilterModel extends Observable{
 
-    private  BufferedReader bufferedReader;
-    private  BufferedWriter bufferedWriter;
-    private  Map<String, String[]> teams = new HashMap<>();
-   
-    public TeamFilterModel(){
-        this.addObserver(new FilterViewController());
+    private Map<String, String[]> teams ;
+    private FilterModel model = new FilterModel();
+
+     private boolean progRunning;
+
+    public boolean isProgRunning() {
+        synchronized(this) {
+            return progRunning;
+        }
+    }
+
+    public void setProgRunning(boolean progRunning) {
+        this.progRunning = progRunning;
     }
     
-    public Map<String, String[]> getTeams() {
-        loadTeam();
+    public TeamFilterModel(){
+        this.teams = new HashMap<>();
+        this.progRunning = true;
+        loadTeams();
+    }
+  
+    public String[] getTeam(String teamName) {
+        if (teamExist(teamName)) {
+            return teams.get(teamName);
+        } else {
+            return null;
+        }
+        
+        // return teamExists(teamName) == true ? return Teams.get(teamName) : return null;
+    }
+    
+    
+     public List<FilterNameEntry> getFilterNameEntrys(){
+        List<FilterNameEntry> table = new ArrayList<>();
+        synchronized(this){
+            for(String entry : teams.keySet()){
+                String teamName = entry;
+                table.add(new FilterNameEntry(teamName));
+            }
+        }
+        return table;
+    }
+
+    public void updateTeams(String teamName, String[] team) throws TeamNotFoundException{
+        if (teamExist(teamName)) {
+            teams.put(teamName, team);
+            model.PersistsTeams(teams);
+            setChanged();
+        }else{
+            throw new TeamNotFoundException("This team not exists in your team filters.");
+        }
+    }
+    
+    public  void safeNewTeam(String teamName, String[] team) throws TeamAlreadyExistsException{
+         if (!teamExist(teamName)) {
+            teams.put(teamName, team);
+            model.PersistsTeams(teams);
+            setChanged();
+         }else{
+             throw new TeamAlreadyExistsException("There is already a Team with this Team-Name.");
+         }
+    }
+    
+    public Map<String, String[]> getAllTeams() {
+        loadTeams();
         return teams;
     }
 
-    private void loadTeam() {
-        try {
-            bufferedReader = new BufferedReader(new FileReader("Teams.txt"));
-            String line = bufferedReader.readLine();
-            while (line != null) {
-                String[] tmp = line.split(":");
-                teams.put(tmp[0], tmp[1].split(","));
-                line = bufferedReader.readLine();
-            }
-            bufferedReader.close();
-        } catch (IOException ex ) {
-            Logger.getLogger(TeamFilterModel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void loadTeams() {
+        teams = model.getTeams();
+        setChanged();
     }
 
-    public  void PersistsTeams(Map<String, String[]> teamMap) {
-        teams = teamMap;
-        try {
-            bufferedWriter = new BufferedWriter(new FileWriter("Teams.txt"));
-            for (Map.Entry e : teams.entrySet()) {
-                String teamToWrite = e.getKey() + ":";
-                String[] tmp = (String[]) e.getValue();
-                for (int i = 0; i < tmp.length; i++) {
-                    if (i != tmp.length - 1) {
-                        teamToWrite = teamToWrite + tmp[i] + ",";
-                    } else {
-                        teamToWrite = teamToWrite + tmp[i];
-                    }
-                }
-                bufferedWriter.write(teamToWrite);
-                bufferedWriter.newLine();
-            }
-            bufferedWriter.flush();
-            bufferedWriter.close();
-            if(countObservers()>0){
-                setChanged();
-                notifyObservers(teams);
-            }
-            
-        } catch (IOException ex) {
-            Logger.getLogger(TeamFilterModel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    private boolean teamExist(String teamName) {
+        loadTeams();
+        return teams.containsKey(teamName);
     }
-    public static void main(String...args){
-        Map<String,String[]> tmp = new HashMap<String,String[]>();
-        tmp.put("Hallo", new String[]{"hallo1@gmail.de","Test1@gmail.com"});
-        TeamFilterModel tm = new TeamFilterModel();
-        tm.PersistsTeams(tmp);
-    }
-    
 }
