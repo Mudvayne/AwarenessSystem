@@ -56,8 +56,7 @@ public class FilterViewController implements Initializable, Observer {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-
+     
     }
 
     @Override

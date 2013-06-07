@@ -106,30 +106,18 @@ public class CalendarViewController implements Initializable, Observer{
     
     public void updateCalendarTable()
     {
-        //boolean[] times = { true, false, true, false, false, true, false, true, false, false, true, false, true, false }; //dummys
         final ObservableList<TableEntry> data = FXCollections.observableList(calendarModel.getTableEntrys());
-        /*
-                FXCollections.observableArrayList(
-            new TableEntry("Hans", times),
-            new TableEntry("Klaus", times),
-            new TableEntry("Hugo", times),
-            new TableEntry("Hubert", times)
-        );*/
         calendarViewTable.setItems(data);
-        /*
-        EmployeeModel[] employees = (EmployeeModel[]) calendarModel.getMitarbeiterList().toArray();
-        for(int i = 0 ; i < calendarModel.getMitarbeiterList().size() ; i++)
-        {   
-            boolean[] times2 = { true, false, true, false, false, true, false, true, false, false, true, false, true, false }; //dummywerte
-            FXCollections.observableArrayList(new TableEntry(employees[i].getName(), times2));
-        }
-        
-        calendarViewTable.setItems(data);
-        */
+        doStyling();
     }
 
     @Override
     public void update(java.util.Observable o, Object arg) {
         updateCalendarTable();
+    }
+    
+    public void doStyling()
+    {
+        
     }
 }
