@@ -50,6 +50,7 @@ public class FilterViewController implements Initializable, Observer {
     EventHandler<ActionEvent> handler;
     private boolean okClicked = false;
     private Map<String, String[]> teams = new HashMap<>();
+    private int countCheckBox = 0;
     private final static TeamFilterModel tfc = new TeamFilterModel();
     @FXML
     private TableView<FilterNameEntry> filterViewTable;
@@ -87,16 +88,16 @@ public class FilterViewController implements Initializable, Observer {
     private void handleMouseReleasedTeam(MouseEvent event) {
         int position = filterViewTable.getFocusModel().getFocusedCell().getRow();
         FilterNameEntry teamName = (FilterNameEntry) filterViewTable.getItems().get(position);
-      
-        String[] namen = teams.get( teamName.getColFilterName());
+
+        String[] namen = teams.get(teamName.getColFilterName());
         final ObservableList<FilterEntry> data = FXCollections.observableList(calendarModel.getFilterEntrys());
-       // final ObservableList<FilterEntry> tmp = FXCollections.observableList(calendarModel.getFilterEntrys());
-        
+        // final ObservableList<FilterEntry> tmp = FXCollections.observableList(calendarModel.getFilterEntrys());
+
 
         for (FilterEntry e : data) {
             for (int i = 0; i < namen.length; i++) {
                 if (namen[i].equals(e.getColMitarbeiter())) {
-                  e.setColAuswahl(true);
+                    e.setColAuswahl(true);
                 }
             }
         }
@@ -109,63 +110,70 @@ public class FilterViewController implements Initializable, Observer {
 
     @FXML
     private void handleButtonNewFilterAction(ActionEvent event) throws TeamAlreadyExistsException {
-        
+
         FilterViewTextField.setEditable(true);
         FilterViewTextField.setDisable(false);
         FilterViewTextField.setText("Bitte geben sie einen neuen TeamNamen ein.");
         final ObservableList<FilterEntry> data = FXCollections.observableList(calendarModel.getFilterEntrys());
         mitarbeiterViewTable.setItems(data);
-      
+
     }
-    
+
     @FXML
-    private void handelMouseClickedTextField(MouseEvent event){
-        if(FilterViewTextField.getText().equals("Bitte geben sie einen neuen TeamNamen ein.")|| FilterViewTextField.getText().equals("Leerer Team Name nicht Erlaubt") || FilterViewTextField.getText().equals("Es Existiert bereits ein Team mit diesem Namen")){
-           FilterViewTextField.setText(""); 
+    private void handelMouseClickedTextField(MouseEvent event) {
+        if (FilterViewTextField.getText().equals("Bitte geben sie einen neuen TeamNamen ein.") || FilterViewTextField.getText().equals("Leerer Team Name nicht Erlaubt") || FilterViewTextField.getText().equals("Es Existiert bereits ein Team mit diesem Namen")) {
+            FilterViewTextField.setText("");
         }
-        
-        
+
+
     }
 
     @FXML
     private void handleButtonDeleteFilterAction(ActionEvent event) {
-        
+        int position = filterViewTable.getFocusModel().getFocusedCell().getRow();
+        if (position == -1) {
+            FilterViewTextField.setText("Bitte wählen sie ein Team Aus um es zu Löschen.");
+        } else {
+            FilterNameEntry teamName = (FilterNameEntry) filterViewTable.getItems().get(position);
+            teamFilterModel.deleteTeam(teamName.getColFilterName());
+            FilterViewTextField.setText("Team wurde Erfolgreich gelöscht.");
+        }
+
     }
 
     @FXML
-    private void handleEmployeIsSelected(ActionEvent event){
-       // ((FilterEntry)t.getTableView().getItems().get(t.getTablePosition().getRow())).setColAuswahl(t.getNewValue());
-        
+    private void handleEmployeIsSelected(ActionEvent event) {
+        System.out.println("test");
     }
+
+  
     @FXML
     private void handleButtonSaveFiltersAction(ActionEvent event) throws IOException {
-        if(FilterViewTextField.getText().equals("")){
+        if (FilterViewTextField.getText().equals("")) {
             FilterViewTextField.setText("Leerer Team Name nicht Erlaubt");
         }
-        if(FilterViewTextField.getText().equals("Bitte geben sie einen neuen TeamNamen ein.")|| FilterViewTextField.getText().equals("Leerer Team Name nicht Erlaubt")||FilterViewTextField.getText().equals("Es Existiert bereits ein Team mit diesem Namen")){
-            
-        }else{
-            
+        if (FilterViewTextField.getText().equals("Bitte geben sie einen neuen TeamNamen ein.") || FilterViewTextField.getText().equals("Leerer Team Name nicht Erlaubt") || FilterViewTextField.getText().equals("Es Existiert bereits ein Team mit diesem Namen")) {
+        } else {
+
             final ObservableList<FilterEntry> data = mitarbeiterViewTable.getItems();
             ArrayList<String> team = new ArrayList<>();
-            for(FilterEntry e: data){
-                if(e.getColAuswahl()){
+            for (FilterEntry e : data) {
+                if (e.getColAuswahl()) {
                     team.add(e.getColMitarbeiter());
                 }
             }
             String[] teamTmp = new String[team.size()];
             team.toArray(teamTmp);
-            
+
             try {
                 // TableColumn isSelectedColumn =
-                 //isSelectedColumn.getProperties();
-                 teamFilterModel.safeNewTeam(FilterViewTextField.getText(), teamTmp);
+                //isSelectedColumn.getProperties();
+                teamFilterModel.safeNewTeam(FilterViewTextField.getText(), teamTmp);
             } catch (TeamAlreadyExistsException ex) {
                 FilterViewTextField.setText("Es Existiert bereits ein Team mit diesem Namen");
             }
         }
-        System.out.println(mitarbeiterViewTable.getItems().size());
-        
+
     }
 
     @Override
@@ -173,34 +181,29 @@ public class FilterViewController implements Initializable, Observer {
         filterName.setCellValueFactory(new PropertyValueFactory<FilterNameEntry, String>("colFilterName"));
         mitarbeiter.setCellValueFactory(new PropertyValueFactory<FilterEntry, String>("colMitarbeiter"));
         auswahl.setCellValueFactory(new PropertyValueFactory<FilterEntry, Boolean>("colAuswahl"));
-
-
-
-        auswahl.setCellFactory(setColour());
+        auswahl.setCellFactory(setCheckBox());
         auswahl.setEditable(true);
 
 
         handler = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                CheckBox cb = (CheckBox) event.getSource();
+                TableColumn column = (TableColumn) cb.getUserData();
+                if (cb.isSelected()) {
+                    System.out.println(cb.getUserData());
+                   
+                } else {
+                    System.out.println("false");
+                }
 
-        @Override
-        public void handle(ActionEvent event) {
-            CheckBox cb = (CheckBox) event.getSource();
-            TableColumn column = (TableColumn) cb.getUserData();
-            if (cb.isSelected()) {
-                System.out.println(event.getTarget());
-                System.out.println("true");
-                System.out.println(mitarbeiterViewTable.getFocusModel().getFocusedCell().getRow());
-            } else {
-                System.out.println("false");
             }
-           
-        }
-    };
+        };
 
 
     }
 
-    private Callback<TableColumn<FilterEntry, Boolean>, TableCell<FilterEntry, Boolean>> setColour() {
+    private Callback<TableColumn<FilterEntry, Boolean>, TableCell<FilterEntry, Boolean>> setCheckBox() {
         return new Callback<TableColumn<FilterEntry, Boolean>, TableCell<FilterEntry, Boolean>>() {
             @Override
             public TableCell<FilterEntry, Boolean> call(TableColumn<FilterEntry, Boolean> param) {
@@ -211,10 +214,13 @@ public class FilterViewController implements Initializable, Observer {
                         if (!empty) {
                             // Use a SimpleDateFormat or similar in the format method
                             if (item != null) {
+                                
                                 CheckBox check = new CheckBox();
                                 check.setSelected(item.booleanValue());
                                 check.setOnAction(handler);
+                                
                                 setGraphic(check);
+                                countCheckBox++;
                             }
                         } else {
                             setText(null);
@@ -226,7 +232,7 @@ public class FilterViewController implements Initializable, Observer {
         };
     }
 
-    private Callback<TableColumn<FilterEntry, Boolean>, CheckBoxTableCell<FilterEntry, Boolean>> setCheckBox() {
+   /* private Callback<TableColumn<FilterEntry, Boolean>, CheckBoxTableCell<FilterEntry, Boolean>> setCheckBox() {
         return new Callback<TableColumn<FilterEntry, Boolean>, CheckBoxTableCell<FilterEntry, Boolean>>() {
             @Override
             public CheckBoxTableCell<FilterEntry, Boolean> call(TableColumn<FilterEntry, Boolean> param) {
@@ -246,7 +252,7 @@ public class FilterViewController implements Initializable, Observer {
 
             }
         };
-    }
+    }*/
 
     public void updateMitarbeiterTabel() {
         final ObservableList<FilterEntry> data = FXCollections.observableList(calendarModel.getFilterEntrys());
@@ -265,7 +271,7 @@ public class FilterViewController implements Initializable, Observer {
             updateMitarbeiterTabel();
         }
         if (o.getClass() == TeamFilterModel.class) {
-             teams = teamFilterModel.getAllTeams();
+            teams = teamFilterModel.getAllTeams();
             updateTeamTable();
         }
 

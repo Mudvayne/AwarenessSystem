@@ -1,6 +1,4 @@
 KaffeRunde:User1
 Vorstand:User1,User2,User3
-Team1:User1,User2
 MittagsTisch:User2
-Team2:User3
 Team3:User2,User3

@@ -26,6 +26,7 @@ public class TeamFilterModel extends Observable{
         }
     }
 
+    
     public void setProgRunning(boolean progRunning) {
         this.progRunning = progRunning;
     }
@@ -46,7 +47,12 @@ public class TeamFilterModel extends Observable{
         // return teamExists(teamName) == true ? return Teams.get(teamName) : return null;
     }
     
-    
+    public void deleteTeam(String teamName){
+        teams.remove(teamName);
+        model.remove(teamName);
+        setChanged();
+         this.notifyObservers();
+    }
      public List<FilterNameEntry> getFilterNameEntrys(){
         List<FilterNameEntry> table = new ArrayList<>();
         synchronized(this){
@@ -63,6 +69,7 @@ public class TeamFilterModel extends Observable{
             teams.put(teamName, team);
             model.PersistsTeams(teams);
             setChanged();
+            this.notifyObservers();
         }else{
             throw new TeamNotFoundException("This team not exists in your team filters.");
         }
@@ -73,6 +80,7 @@ public class TeamFilterModel extends Observable{
             teams.put(teamName, team);
             model.PersistsTeams(teams);
             setChanged();
+             this.notifyObservers();           
          }else{
              throw new TeamAlreadyExistsException("There is already a Team with this Team-Name.");
          }
@@ -86,6 +94,7 @@ public class TeamFilterModel extends Observable{
     public void loadTeams() {
         teams = model.getTeams();
         setChanged();
+        //this.notifyObservers();
     }
 
     private boolean teamExist(String teamName) {

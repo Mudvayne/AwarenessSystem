@@ -226,7 +226,10 @@ public class CalendarViewController implements Initializable, Observer {
 
     public void updateTeamTable() {
         final ObservableList<FilterNameEntry> data = FXCollections.observableList(teamFilterModel.getFilterNameEntrys());
-        //teamComboBox.getItems().clear();
+        final ObservableList<FilterNameEntry> data2 = FXCollections.observableList(teamFilterModel.getFilterNameEntrys());
+        data2.clear();
+        teamComboBox.getItems().clear();
+              
         for (FilterNameEntry e : data) {
             teamComboBox.getItems().add(e.getColFilterName());
         }

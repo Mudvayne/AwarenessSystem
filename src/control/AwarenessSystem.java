@@ -23,17 +23,14 @@ public class AwarenessSystem extends Application {
     private BorderPane rootLayout;
     private CalendarModel calendarModel;
     private TeamFilterModel teamFilterModel;
-    private FilterController filterController;
     private GoogleApiController googleController;
 
     @Override
     public void start(Stage stage) throws Exception {
         calendarModel = new CalendarModel();
         teamFilterModel = new TeamFilterModel();
-        //filterController = new FilterController(teamFilterModel);
         googleController = new GoogleApiController(calendarModel);
         googleController.start();
-        //filterController.start();
         this.primaryStage = stage;
         this.primaryStage.setTitle("Team Awareness System");
         //this.primaryStage.getIcons().add(new Image("file:resources/images/address_book_32.png"));

@@ -49,6 +49,10 @@ public class FilterModel  {
         }
     }
 
+    public void remove(String teamName){
+        teams.remove(teamName);
+        PersistsTeams(teams);
+    }
     public  void PersistsTeams(Map<String, String[]> teamMap) {
         teams = teamMap;
         try {
