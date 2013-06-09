@@ -1,6 +1,10 @@
 package control;
 
+import com.sun.javafx.collections.transformation.FilteredList;
+import com.sun.javafx.collections.transformation.SortedList;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Observer;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -8,15 +12,20 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
 import model.CalendarModel;
+import model.FilterEntry;
+import model.FilterNameEntry;
 import model.TableEntry;
+import model.TeamFilterModel;
 
 /**
  * Controller Klasse für die CalendarView
@@ -27,10 +36,17 @@ public class CalendarViewController implements Initializable, Observer {
 
     private AwarenessSystem main;
     private CalendarModel calendarModel;
+    private TeamFilterModel teamFilterModel;
+    private ObservableList<TableEntry> shownTableList;
+    private Map<String, String[]> teams;
     @FXML
     private TableView<TableEntry> calendarViewTable;
     @FXML
     private TableColumn tableColName;
+    @FXML
+    private ComboBox teamComboBox;
+    @FXML
+    private FXCollections observableArrayList;
     @FXML
     private TableColumn tableCol6;
     @FXML
@@ -71,45 +87,80 @@ public class CalendarViewController implements Initializable, Observer {
         calendarModel.addObserver(this);
     }
 
+    public void setTeamFilterModel(TeamFilterModel teamFilterModel) {
+        this.teamFilterModel = teamFilterModel;
+        teams = teamFilterModel.getAllTeams();
+        teamFilterModel.addObserver(this);
+    }
+
     @FXML
     private void handleButtonFiltersAction(ActionEvent event) throws Exception {
         main.showFilterView();
     }
 
     @FXML
-    private void handleSearchAction(ActionEvent event) {
-
-        final ObservableList<TableEntry> data = FXCollections.observableList(calendarModel.getTableEntrys());
+    private void handleSearchTextHasChanged(KeyEvent event) {
+       // final ObservableList<TableEntry> data = FXCollections.observableList(calendarModel.getTableEntrys());
         final ObservableList<TableEntry> singlePerson = FXCollections.observableList(calendarModel.getTableEntrys());
+        singlePerson.clear();
         boolean found = false;
-        
-        for (int i = 0; i < data.size(); i++) {
-            if (data.get(i).getColName().equals(searchField.getCharacters().toString())) {
-                singlePerson.clear();
-                singlePerson.add(data.get(i));
+        for (int i = 0; i < shownTableList.size(); i++) {
+            if (shownTableList.get(i).getColName().contains(searchField.getCharacters().toString())) {
+                singlePerson.add(shownTableList.get(i));
                 calendarViewTable.setItems(singlePerson);
                 found = true;
             }
         }
-        if(!found){
-             calendarViewTable.setItems(singlePerson);
+        if (!found) {
+            calendarViewTable.setItems(shownTableList);
         }
-            
     }
 
     @FXML
     private void handleDropDownAction(ActionEvent event) {
-       
-        System.out.println("dropdown action");
-       
+
+        String[] namen = teams.get(teamComboBox.getValue().toString());
+
+        final ObservableList<TableEntry> data = FXCollections.observableList(calendarModel.getTableEntrys());
+        if (teamComboBox.getValue().toString().equals("ALL")) {
+            calendarViewTable.setItems(shownTableList);
+        } else {
+            final ObservableList<TableEntry> selectedTeam = FXCollections.observableList(calendarModel.getTableEntrys());
+            selectedTeam.clear();
+            final ObservableList<FilterEntry> data2 = FXCollections.observableList(calendarModel.getFilterEntrys());
+
+
+            for (FilterEntry e : data2) {
+                for (int i = 0; i < namen.length; i++) {
+                    if (namen[i].equals(e.getColMitarbeiter())) {
+                        e.setColAuswahl(true);
+                    }
+                }
+            }
+
+            for (TableEntry e : data) {
+                for (FilterEntry f : data2) {
+                    if (e.getColName().equals(f.getColMitarbeiter())) {
+                        if (f.getColAuswahl() == true) {
+                            selectedTeam.add(e);
+
+                        }
+                    }
+                }
+            }
+
+            shownTableList = selectedTeam;
+
+            calendarViewTable.setItems(shownTableList);
+
+        }
     }
 
-    
     public void handle(ActionEvent event) {
         searchField.requestFocus();
-        
+
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -143,6 +194,8 @@ public class CalendarViewController implements Initializable, Observer {
         tableCol17.setCellFactory(setColour());
         tableCol18.setCellFactory(setColour());
         tableCol19.setCellFactory(setColour());
+
+       
     }
 
     private Callback<TableColumn<TableEntry, String>, TableCell<TableEntry, String>> setColour() {
@@ -168,13 +221,19 @@ public class CalendarViewController implements Initializable, Observer {
         };
     }
 
-    public void updateCalendarTableSearch() {
+    public void updateTeamTable() {
+        final ObservableList<FilterNameEntry> data = FXCollections.observableList(teamFilterModel.getFilterNameEntrys());
+        //teamComboBox.getItems().clear();
+        for (FilterNameEntry e : data) {
+            teamComboBox.getItems().add(e.getColFilterName());
+        }
+        teamComboBox.getItems().add("ALL");
     }
 
     public void updateCalendarTable() {
         //boolean[] times = { true, false, true, false, false, true, false, true, false, false, true, false, true, false }; //dummys
         final ObservableList<TableEntry> data = FXCollections.observableList(calendarModel.getTableEntrys());
-
+        shownTableList = data;
         /*
          FXCollections.observableArrayList(
          new TableEntry("Hans", times),
@@ -182,7 +241,7 @@ public class CalendarViewController implements Initializable, Observer {
          new TableEntry("Hugo", times),
          new TableEntry("Hubert", times)
          );*/
-        calendarViewTable.setItems(data);
+        calendarViewTable.setItems(shownTableList);
         /*
          EmployeeModel[] employees = (EmployeeModel[]) calendarModel.getMitarbeiterList().toArray();
          for(int i = 0 ; i < calendarModel.getMitarbeiterList().size() ; i++)
@@ -197,11 +256,17 @@ public class CalendarViewController implements Initializable, Observer {
 
     @Override
     public void update(java.util.Observable o, Object arg) {
-        updateCalendarTable();
+
+        if (o.getClass() == CalendarModel.class) {
+            updateCalendarTable();
+        }
+        if (o.getClass() == TeamFilterModel.class) {
+            teams = teamFilterModel.getAllTeams();
+            updateTeamTable();
+        }
+
     }
-    
-    public void doStyling()
-    {
-        
+
+    public void doStyling() {
     }
 }

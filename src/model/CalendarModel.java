@@ -58,7 +58,7 @@ public class CalendarModel extends Observable {
         synchronized(this){
             for(Map.Entry<EmployeeModel, Set<TerminModel>> entry : mitarbeiterTermineList.entrySet()){
                 EmployeeModel employeeModel = entry.getKey();
-                table.add(new FilterEntry(employeeModel.getName()));
+                table.add(new FilterEntry(employeeModel.getName(),false));
             }
         }
         return table;

@@ -67,6 +67,9 @@ public class AwarenessSystem extends Application {
 
             controller.setMainApp(this);
             controller.setCalendarModel(calendarModel);
+            controller.setTeamFilterModel(teamFilterModel);
+            controller.updateTeamTable();
+            
             //controller.updateCalendarTable(); // noch die falsche Stelle dafür! ->observer
         } catch (IOException e) {
             // Exception gets thrown if the fxml file could not be loaded

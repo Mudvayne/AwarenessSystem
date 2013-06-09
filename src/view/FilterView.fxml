@@ -2,41 +2,41 @@
 
 <?import java.lang.*?>
 <?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.collections.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<AnchorPane id="AnchorPane" disable="false" focusTraversable="false" opacity="1.0" prefHeight="359.00007792968245" prefWidth="440.0" snapToPixel="true" visible="true" xmlns:fx="http://javafx.com/fxml" fx:controller="control.FilterViewController">
+<AnchorPane id="AnchorPane" prefHeight="359.00007792968245" prefWidth="440.0" xmlns:fx="http://javafx.com/fxml" fx:controller="control.FilterViewController">
   <children>
     <Button mnemonicParsing="false" onAction="#handleButtonSaveFiltersAction" prefWidth="90.0" text="speichern" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-    <Accordion expandedPane="$null" layoutX="196.0" layoutY="25.0" />
+    <Accordion layoutX="196.0" layoutY="25.0" />
     <Button mnemonicParsing="false" onAction="#handleButtonDeleteFilterAction" prefWidth="90.0" text="löschen" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="110.0" />
     <Button mnemonicParsing="false" onAction="#handleButtonNewFilterAction" prefWidth="90.0" text="neu" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
-    <SplitPane disable="false" dividerPositions="0.33253588516746413" focusTraversable="true" prefHeight="278.0" prefWidth="420.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+    <SplitPane dividerPositions="0.33253588516746413" focusTraversable="true" prefHeight="278.0" prefWidth="420.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
       <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
           <children>
-            <TableView fx:id="filterViewTable" disable="false" prefHeight="276.0" prefWidth="136.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <TableView fx:id="filterViewTable" onMouseClicked="#handleMouseReleasedTeam" prefHeight="276.0" prefWidth="136.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <columns>
-                <TableColumn  editable="false" sortable="true"  maxWidth="136.0" minWidth="136.0" prefWidth="136.0" fx:id="filterName" text="Filter" />
+                <TableColumn editable="false" maxWidth="136.0" minWidth="136.0" prefWidth="136.0" text="Filter" fx:id="filterName" />
               </columns>
             </TableView>
           </children>
         </AnchorPane>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
           <children>
-            <TableView fx:id="mitarbeiterViewTable" disable="false" tableMenuButtonVisible="false"     prefHeight="276.0" prefWidth="276.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <TableView fx:id="mitarbeiterViewTable" editable="true" prefHeight="276.0" prefWidth="276.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <columns>
-                <TableColumn editable="false" sortable="true"  maxWidth="138.0" minWidth="138.0" prefWidth="138.0" text="Mitarbeiter" fx:id="mitarbeiter"/>
-                <TableColumn editable="true" sortable="true" maxWidth="138.0" minWidth="138.0" prefWidth="138.0" text="Auswahl" fx:id="auswahl"/>
+                <TableColumn editable="false" maxWidth="138.0" minWidth="138.0" prefWidth="138.0" text="Mitarbeiter" fx:id="mitarbeiter" />
+                <TableColumn maxWidth="138.0" minWidth="138.0" onEditStart="#handleEmployeIsSelected" prefWidth="138.0" text="Auswahl" fx:id="auswahl" />
               </columns>
             </TableView>
           </children>
         </AnchorPane>
       </items>
     </SplitPane>
-    <TextField fx:id="FilterViewTextField" disable="true" editable="false" layoutX="10.0" layoutY="297.0" prefWidth="420.0" />
+    <TextField fx:id="FilterViewTextField" disable="true" editable="false" layoutX="10.0" layoutY="297.0" onMouseClicked="#handelMouseClickedTextField" prefWidth="420.0" />
   </children>
 </AnchorPane>

@@ -9,9 +9,9 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="830.0" xmlns:fx="http://javafx.com/fxml" fx:controller="control.CalendarViewController">
   <children>
-    <TableView fx:id="calendarViewTable" disable="false" editable="false" prefHeight="400.0" prefWidth="801.0" tableMenuButtonVisible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="41.0">
+    <TableView fx:id="calendarViewTable" prefHeight="400.0" prefWidth="801.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="41.0">
       <columns>
-        <TableColumn editable="false" maxWidth="121.0" minWidth="100.0" prefWidth="109.0" resizable="false" sortable="true" text="Mitarbeiter" fx:id="tableColName" />
+        <TableColumn editable="false" maxWidth="121.0" minWidth="100.0" prefWidth="109.0" resizable="false" text="Mitarbeiter" fx:id="tableColName" />
         <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="6" fx:id="tableCol6" />
         <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="7" fx:id="tableCol7" />
         <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="8" fx:id="tableCol8" />
@@ -28,16 +28,13 @@
         <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" sortable="false" text="19" fx:id="tableCol19" />
       </columns>
     </TableView>
-    <TextField fx:id="searchField" onAction="#handleSearchAction" prefWidth="237.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
-    <ComboBox onAction="#handleDropDownAction" prefHeight="21.0" prefWidth="250.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" >
+    <TextField fx:id="searchField" onKeyReleased="#handleSearchTextHasChanged" prefWidth="237.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="14.0" />
+    <ComboBox fx:id="teamComboBox" onAction="#handleDropDownAction" prefHeight="21.0" prefWidth="250.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
       <items>
         <FXCollections fx:factory="observableArrayList">
-          <String fx:value="Filter 1" />
-          <String fx:value="Filter 2" />
-          <String fx:value="Filter 3" />
         </FXCollections>
       </items>
     </ComboBox>
-    <Button id="button" fx:id="buttonFilters" cache="false" cancelButton="false" defaultButton="false" layoutX="274.0" onAction="#handleButtonFiltersAction" rotate="0.0" text="Filter verwalten" textOverrun="ELLIPSIS" underline="false" AnchorPane.topAnchor="10.0" />
+    <Button id="button" fx:id="buttonFilters" layoutX="274.0" onAction="#handleButtonFiltersAction" text="Filter verwalten" AnchorPane.topAnchor="10.0" />
   </children>
 </AnchorPane>

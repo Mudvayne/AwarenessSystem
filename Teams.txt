@@ -1,6 +1,6 @@
-Team1:hallo1@gmail.de,Test1@gmail.com
-Team2:hallo1@gmail.de,Test1@gmail.com
-Vorstand:hallo1@gmail.de,Test1@gmail.com
-KaffeRunde:hallo1@gmail.de,Test1@gmail.com
-Team3:hallo1@gmail.de,Test1@gmail.com
-MittagsTisch:hallo1@gmail.de,Test1@gmail.com
+KaffeRunde:User1
+Vorstand:User1,User2,User3
+Team1:User1,User2
+MittagsTisch:User2
+Team2:User3
+Team3:User2,User3

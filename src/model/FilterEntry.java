@@ -4,6 +4,7 @@
  */
 package model;
 
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
@@ -13,16 +14,16 @@ import javafx.beans.property.SimpleStringProperty;
 public class FilterEntry {
 
     private SimpleStringProperty colMitarbeiter;
-    private SimpleStringProperty colAuswahl;
+    private SimpleBooleanProperty colAuswahl;
     
     /**
      * 
      * @param employeeName
      * @param taken 
      */
-    public FilterEntry(String employeeName) {
+    public FilterEntry(String employeeName, boolean isSelected) {
         this.colMitarbeiter = new SimpleStringProperty(employeeName);
-        this.colAuswahl = new SimpleStringProperty(String.valueOf(false));
+        this.colAuswahl = new SimpleBooleanProperty(isSelected);
     }
 
     /**
@@ -33,11 +34,18 @@ public class FilterEntry {
         return colMitarbeiter.get();
     }
 
+   
     /**
      * 
      * @return the colAuswahl
      */
-    public String getColAuswahl() {
+    public Boolean getColAuswahl() {
         return colAuswahl.get();
     }
+
+    public void setColAuswahl(boolean colAuswahl) {
+        this.colAuswahl =  new SimpleBooleanProperty(colAuswahl);
+    }
+    
+    
 }
