@@ -129,7 +129,7 @@ public class FilterViewController implements Initializable, Observer {
 
     @FXML
     private void handleButtonDeleteFilterAction(ActionEvent event) {
-        System.out.println("filter löschen");
+        
     }
 
     @FXML

@@ -39,6 +39,7 @@ public class CalendarViewController implements Initializable, Observer {
     private TeamFilterModel teamFilterModel;
     private ObservableList<TableEntry> shownTableList;
     private Map<String, String[]> teams;
+    private boolean teamHasChoosen = false;
     @FXML
     private TableView<TableEntry> calendarViewTable;
     @FXML
@@ -100,7 +101,7 @@ public class CalendarViewController implements Initializable, Observer {
 
     @FXML
     private void handleSearchTextHasChanged(KeyEvent event) {
-       // final ObservableList<TableEntry> data = FXCollections.observableList(calendarModel.getTableEntrys());
+        // final ObservableList<TableEntry> data = FXCollections.observableList(calendarModel.getTableEntrys());
         final ObservableList<TableEntry> singlePerson = FXCollections.observableList(calendarModel.getTableEntrys());
         singlePerson.clear();
         boolean found = false;
@@ -123,6 +124,8 @@ public class CalendarViewController implements Initializable, Observer {
 
         final ObservableList<TableEntry> data = FXCollections.observableList(calendarModel.getTableEntrys());
         if (teamComboBox.getValue().toString().equals("ALL")) {
+            shownTableList = data;
+            teamHasChoosen = false;
             calendarViewTable.setItems(shownTableList);
         } else {
             final ObservableList<TableEntry> selectedTeam = FXCollections.observableList(calendarModel.getTableEntrys());
@@ -152,7 +155,7 @@ public class CalendarViewController implements Initializable, Observer {
             shownTableList = selectedTeam;
 
             calendarViewTable.setItems(shownTableList);
-
+            teamHasChoosen = true;
         }
     }
 
@@ -195,7 +198,7 @@ public class CalendarViewController implements Initializable, Observer {
         tableCol18.setCellFactory(setColour());
         tableCol19.setCellFactory(setColour());
 
-       
+
     }
 
     private Callback<TableColumn<TableEntry, String>, TableCell<TableEntry, String>> setColour() {
@@ -232,6 +235,7 @@ public class CalendarViewController implements Initializable, Observer {
 
     public void updateCalendarTable() {
         //boolean[] times = { true, false, true, false, false, true, false, true, false, false, true, false, true, false }; //dummys
+
         final ObservableList<TableEntry> data = FXCollections.observableList(calendarModel.getTableEntrys());
         shownTableList = data;
         /*
@@ -240,8 +244,11 @@ public class CalendarViewController implements Initializable, Observer {
          new TableEntry("Klaus", times),
          new TableEntry("Hugo", times),
          new TableEntry("Hubert", times)
-         );*/
-        calendarViewTable.setItems(shownTableList);
+        
+         *);*/
+        if (!teamHasChoosen) {
+            calendarViewTable.setItems(shownTableList);
+        }
         /*
          EmployeeModel[] employees = (EmployeeModel[]) calendarModel.getMitarbeiterList().toArray();
          for(int i = 0 ; i < calendarModel.getMitarbeiterList().size() ; i++)

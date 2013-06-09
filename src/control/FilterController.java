@@ -15,7 +15,7 @@ import model.TeamFilterModel;
  * @author Flo
  */
 public class FilterController extends Thread{
-    
+  /*  
     
     private final TeamFilterModel teamFilterModel;
     
@@ -35,13 +35,13 @@ public class FilterController extends Thread{
     public void run() {
         
             while(teamFilterModel.isProgRunning()){
-                fillModel();
+             //   fillModel();
                 try {
-                    sleep(60000);
+              //    sleep(60000);
                 } catch (InterruptedException ex) {
                        //do nothing
                 }
             }
        
-    }
+    }*/
 }
