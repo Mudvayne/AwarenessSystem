@@ -1,4 +1,6 @@
+Test:User1,User2
 KaffeRunde:User1
 Vorstand:User1,User2,User3
 MittagsTisch:User2
+Test3:User3
 Team3:User2,User3

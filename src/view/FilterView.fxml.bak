@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="359.00007792968245" prefWidth="440.0" xmlns:fx="http://javafx.com/fxml" fx:controller="control.FilterViewController">
+<AnchorPane id="AnchorPane" prefHeight="385.00007792968245" prefWidth="440.0" xmlns:fx="http://javafx.com/fxml" fx:controller="control.FilterViewController">
   <children>
-    <Button mnemonicParsing="false" onAction="#handleButtonSaveFiltersAction" prefWidth="90.0" text="speichern" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+    <Button fx:id="submittNewTeam" disable="true" mnemonicParsing="false" onAction="#handleButtonSaveFiltersAction" prefWidth="90.0" text="speichern" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
     <Accordion layoutX="196.0" layoutY="25.0" />
     <Button mnemonicParsing="false" onAction="#handleButtonDeleteFilterAction" prefWidth="90.0" text="löschen" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="110.0" />
     <Button mnemonicParsing="false" onAction="#handleButtonNewFilterAction" prefWidth="90.0" text="neu" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
@@ -38,5 +38,6 @@
       </items>
     </SplitPane>
     <TextField fx:id="FilterViewTextField" disable="true" editable="false" layoutX="10.0" layoutY="297.0" onMouseClicked="#handelMouseClickedTextField" prefWidth="420.0" />
+    <TextField disable="true" layoutX="11.0" layoutY="319.0" prefWidth="189.0" />
   </children>
 </AnchorPane>

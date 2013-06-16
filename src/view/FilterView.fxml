@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="359.00007792968245" prefWidth="440.0" xmlns:fx="http://javafx.com/fxml" fx:controller="control.FilterViewController">
+<AnchorPane id="AnchorPane" prefHeight="385.00007792968245" prefWidth="440.0" xmlns:fx="http://javafx.com/fxml" fx:controller="control.FilterViewController">
   <children>
-    <Button mnemonicParsing="false" onAction="#handleButtonSaveFiltersAction" prefWidth="90.0" text="speichern" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+    <Button fx:id="submittNewTeam" disable="true" mnemonicParsing="false" onAction="#handleButtonSaveFiltersAction" prefWidth="90.0" text="speichern" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
     <Accordion layoutX="196.0" layoutY="25.0" />
     <Button mnemonicParsing="false" onAction="#handleButtonDeleteFilterAction" prefWidth="90.0" text="löschen" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="110.0" />
     <Button mnemonicParsing="false" onAction="#handleButtonNewFilterAction" prefWidth="90.0" text="neu" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
@@ -27,7 +27,7 @@
         </AnchorPane>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
           <children>
-            <TableView fx:id="mitarbeiterViewTable"  editable="true" prefHeight="276.0" prefWidth="276.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <TableView fx:id="mitarbeiterViewTable" editable="true" prefHeight="276.0" prefWidth="276.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <columns>
                 <TableColumn editable="false" maxWidth="138.0" minWidth="138.0" prefWidth="138.0" text="Mitarbeiter" fx:id="mitarbeiter" />
                 <TableColumn maxWidth="138.0" minWidth="138.0" prefWidth="138.0" text="Auswahl" fx:id="auswahl" />
@@ -38,5 +38,7 @@
       </items>
     </SplitPane>
     <TextField fx:id="FilterViewTextField" disable="true" editable="false" layoutX="10.0" layoutY="297.0" onMouseClicked="#handelMouseClickedTextField" prefWidth="420.0" />
+    <TextField fx:id="teamNameTextField"  disable="true" layoutX="125.0" layoutY="319.0" prefWidth="189.0" />
+    <Label layoutX="13.0" layoutY="322.0" text="Neuer Team Name:" />
   </children>
 </AnchorPane>
