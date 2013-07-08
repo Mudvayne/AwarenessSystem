@@ -68,6 +68,7 @@ public class GoogleApiController extends Thread{
         DateTime minDay = new DateTime(cal.getTime());
         cal.add(Calendar.DAY_OF_MONTH, +1);
         DateTime maxDay = new DateTime(cal.getTime());
+        
         //CalendarList liefert alle sichtbaren Kalender
         CalendarList calendarList = client.calendarList().list().execute();
         if (calendarList.getItems() != null)
@@ -82,8 +83,19 @@ public class GoogleApiController extends Thread{
                             // korrigiere Start und End-Datum falls ganztaegiges Event
                             Date start = new Date(event.getStart().getDateTime()==null?event.getStart().getDate().getValue()-TimeZone.getDefault().getRawOffset()-TimeZone.getDefault().getDSTSavings():event.getStart().getDateTime().getValue());
                             Date end = new Date(event.getEnd().getDateTime()==null?event.getEnd().getDate().getValue()-TimeZone.getDefault().getRawOffset()-TimeZone.getDefault().getDSTSavings():event.getEnd().getDateTime().getValue());
+                            if(event.getRecurrence() != null) {
+                                // korrigiere Datum, da Termin mit wiederholung
+                                Calendar tmp = Calendar.getInstance();
+                                tmp.setTime(start);
+                                tmp.set(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DATE));
+                                start = tmp.getTime();
+                                tmp.setTime(end);
+                                tmp.set(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DATE));
+                                end = tmp.getTime();
+                                }
                             termine.add(new TerminModel(event.getSummary(),start,end,event.getLocation()));
-                        }    
+                        }
+                        
                     }
                 synchronized(calendar) {
                     calendar.setMitarbeiterTermine(new EmployeeModel(entry.getSummary(),entry.getId()), termine);
