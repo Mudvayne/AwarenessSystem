@@ -157,6 +157,9 @@ public class FilterViewController implements Initializable, Observer {
 
                 try {
                     teamFilterModel.safeNewTeam(teamNameTextField.getText(), teamTmp);
+                    FilterViewTextField.setText("Team wurde erfolgreich erstellt.");
+                    teamNameTextField.setText("");
+                          
                 } catch (TeamAlreadyExistsException ex) {
                     FilterViewTextField.setText("Es Existiert bereits ein Team mit diesem Namen");
                 }
